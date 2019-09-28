@@ -16,6 +16,8 @@ const octokit = new Octokit({
 
 async function main() {
   const stats = await wakatime.getMyStats({ range: RANGE.LAST_7_DAYS });
+  console.log(stats);
+  
   await updateGist(stats);
 }
 
@@ -31,7 +33,8 @@ async function updateGist(stats) {
   for (let i = 0; i < 5; i++) {
     const data = stats.data.languages[i];
     const { name, percent, text: time } = data;
-
+    console.log(data);
+    
     const line = [
       name.padEnd(11),
       time.padEnd(14),
