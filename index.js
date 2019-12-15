@@ -32,17 +32,20 @@ async function updateGist(stats) {
   const lines = [];
   for (let i = 0; i < 5; i++) {
     const data = stats.data.languages[i];
-    const { name, percent, text: time } = data;
-    console.log(data);
     
-    const line = [
-      name.padEnd(11),
-      time.padEnd(14),
-      generateBarChart(percent, 12),
-      String(percent.toFixed(1)).padStart(5) + "%"
-    ];
+    if (data) {
+      const { name, percent, text: time } = data;
+      console.log(data);
+    
+      const line = [
+        name.padEnd(11),
+        time.padEnd(14),
+        generateBarChart(percent, 12),
+        String(percent.toFixed(1)).padStart(5) + "%"
+      ];
 
-    lines.push(line.join(" "));
+      lines.push(line.join(" "));
+    }
   }
 
   try {
